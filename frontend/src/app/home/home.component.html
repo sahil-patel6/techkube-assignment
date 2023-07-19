@@ -1,0 +1,20 @@
+<app-navbar [currentUser]="currentUser"></app-navbar>
+<div *ngIf="isLoading; else content">loading...</div>
+
+<ng-template #content>
+  <div *ngIf="currentUser == null; else home">
+    <h4 class="mt-3" style="margin-left: 16px;">You are not logged in. Please <a routerLink="/signin">sign in</a></h4>
+  </div>
+  <ng-template #home>
+    <h3 class="mt-2" style="margin-left: 16px;">You are authenticated and here is your data:</h3>
+    <ol style="margin-left: 16px;">
+      <li *ngFor="let product of products" type="1">
+        <ul class="mt-2">
+          <li>Id: {{ product.id }}</li>
+          <li>title: {{ product.title }}</li>
+          <li>description: {{ product.description }}</li>
+        </ul>
+      </li>
+    </ol>
+  </ng-template>
+</ng-template>
